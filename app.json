@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "MyFirstApp",
-    "slug": "MyFirstApp",
+    "name": "Courtly",
+    "slug": "Courtly",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myfirstapp",
+    "scheme": "courtly",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
