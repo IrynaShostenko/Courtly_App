@@ -55,3 +55,6 @@ Join our community of developers creating universal apps.
 ![ScreenHeader](ScreenHeader.png)
 ![SectionHeader](SectionHeader.png)
 ![TrainerCard](TrainerCard.png)
+
+## Navigation
+![video](video-navigation.mp4)

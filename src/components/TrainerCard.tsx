@@ -1,7 +1,7 @@
-import { View, Text, Image, StyleSheet, ImageSourcePropType, ViewStyle } from 'react-native';
-import { COLORS } from '@/constants/colors';
-import { SPACING } from '@/constants/spacing';
-import { TYPOGRAPHY } from '@/constants/typography';
+import { COLORS } from '@/src/constants/colors';
+import { SPACING } from '@/src/constants/spacing';
+import { TYPOGRAPHY } from '@/src/constants/typography';
+import { Image, ImageSourcePropType, StyleSheet, Text, View, ViewStyle } from 'react-native';
 
 type Props = {
   name: string;

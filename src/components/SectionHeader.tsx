@@ -1,7 +1,7 @@
-import { View, Text, StyleSheet } from 'react-native';
-import { COLORS } from '@/constants/colors';
-import { SPACING } from '@/constants/spacing';
-import { TYPOGRAPHY } from '@/constants/typography';
+import { COLORS } from '@/src/constants/colors';
+import { SPACING } from '@/src/constants/spacing';
+import { TYPOGRAPHY } from '@/src/constants/typography';
+import { StyleSheet, Text, View } from 'react-native';
 
 type Props = {
   title: string;
