@@ -7,27 +7,11 @@
     <list default="true" id="4de0cdf5-0901-48f9-82ca-577f2c0f4568" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(tabs)/_layout.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(tabs)/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/adam.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/android-icon-background.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/android-icon-foreground.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/android-icon-monochrome.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/favicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/partial-react-logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/splash-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/FormInput.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/PrimaryButton.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ScreenHeader.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/SectionHeader.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/TrainerCard.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants/colors.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants/spacing.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants/typography.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/HomeScreen.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigation/TabsNavigator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/TabsNavigator.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/HomeScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/HomeScreen.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

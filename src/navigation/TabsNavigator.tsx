@@ -1,5 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
+import { Platform } from 'react-native';
+
 
 import HomeScreen from '@/src/screens/HomeScreen';
 import BookingScreen from '@/src/screens/BookingScreen';
@@ -16,6 +18,16 @@ export default function TabsNavigator() {
         headerShown: false,
         tabBarActiveTintColor: COLORS.primaryGreen,
         tabBarInactiveTintColor: COLORS.neutralDarkLight,
+
+        tabBarStyle: {
+              height: Platform.select({ ios: 88, android: 64, default: 64 }),
+            },
+
+            tabBarLabelStyle: {
+              fontSize: 10,
+              marginTop: 2,
+            },
+
         tabBarIcon: ({ color, size, focused }) => {
           let iconName: keyof typeof Ionicons.glyphMap;
 

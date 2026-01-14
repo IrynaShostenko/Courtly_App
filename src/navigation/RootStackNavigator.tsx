@@ -9,8 +9,8 @@ export type RootStackParamList = {
   [SCREENS.YOUR_BOOK]: {
     date: string;
     time: string;
-    duration: string;
-    courtType: string;
+    duration: number;
+    courtType: 'Indoor' | 'Outdoor';
   };
 };
 

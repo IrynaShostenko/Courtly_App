@@ -1,21 +1,34 @@
-import React from 'react';
-import { View } from 'react-native';
-import ScreenHeader from '@/src/components/ScreenHeader';
-import SectionHeader from '@/src/components/SectionHeader';
-import TrainerCard from '@/src/components/TrainerCard';
+import { StyleSheet, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+import HomeHeader from '@/src/components/HomeHeader';
+import HomeBanner from '@/src/components/HomeBanner';
+
+import { COLORS } from '@/src/constants/colors';
+import { CITIES } from '@/src/constants/cities';
 
 export default function HomeScreen() {
-  return (
-    <View style={{ flex: 1, backgroundColor: 'neutralLightLightest' }}>
-      <ScreenHeader title="Home" />
+  const city = CITIES.ODESA;
+  const name = "Iryna";
+  const bannertext = "Play now!";
 
-      <View style={{ padding: 16 }}>
-        <SectionHeader title="Our Trainers" />
-        <TrainerCard
-          name="Adam"
-          image={require('@/src/assets/trainers/adam.jpg')}
+  return (
+    <SafeAreaView style={styles.safe} edges={['top']}>
+      <ScrollView contentContainerStyle={styles.content}>
+        <HomeHeader city={city} name={name} />
+        <HomeBanner
+          source={require('@/src/assets/images/banner.jpg')}
+          text={bannertext}
         />
-      </View>
-    </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  safe: {
+    flex: 1,
+    backgroundColor: COLORS.neutralLightLightest,
+  },
+  content: {},
+});

@@ -58,7 +58,7 @@ const SIDE_WIDTH = 90;
 
 const styles = StyleSheet.create({
   safe: {
-    backgroundColor: COLORS.neutralLightLightest, // або '#fff'
+    backgroundColor: COLORS.neutralLightLightest, 
   },
   container: {
     height: 56,

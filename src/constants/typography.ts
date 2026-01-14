@@ -9,7 +9,14 @@ export const TYPOGRAPHY = {
     lineHeight: 32,
     letterSpacing: 0.24,
   },
-    h4: {
+  h2: {
+    fontFamily: FONT_FAMILY,
+    fontSize: 20,
+    fontWeight: '800',
+    lineHeight: 28,
+    letterSpacing: 0.2,
+  },
+  h4: {
     fontFamily: FONT_FAMILY,
     fontSize: 14,
     fontWeight: '700',
@@ -46,9 +53,9 @@ export const TYPOGRAPHY = {
   captionM: {
   fontFamily: FONT_FAMILY,
   fontSize: 10,
-  fontWeight: '600', // Semi Bold
-  lineHeight: 14,    // Auto → 14 для стабільності
-  letterSpacing: 0.5, // 5% від 10
+  fontWeight: '600', 
+  lineHeight: 14,    
+  letterSpacing: 0.5, 
 }
 
 } as const;
