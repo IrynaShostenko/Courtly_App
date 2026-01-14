@@ -1,4 +1,3 @@
-// src/constants/typography.ts
 const FONT_FAMILY = 'Inter';
 
 export const TYPOGRAPHY = {

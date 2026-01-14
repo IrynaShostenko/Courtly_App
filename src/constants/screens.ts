@@ -4,4 +4,5 @@ export const SCREENS = {
   BOOKING: 'New Play',
   PROFILE: 'Profile',
   YOUR_BOOK: 'YourBook',
+  TRAINERS: 'Trainers',
 } as const;

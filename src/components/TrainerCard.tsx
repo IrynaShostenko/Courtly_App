@@ -1,23 +1,29 @@
 import { COLORS } from '@/src/constants/colors';
 import { SPACING } from '@/src/constants/spacing';
 import { TYPOGRAPHY } from '@/src/constants/typography';
-import { Image, ImageSourcePropType, StyleSheet, Text, View, ViewStyle } from 'react-native';
+import React from 'react';
+import { Image, Pressable, StyleSheet, Text, View, ViewStyle } from 'react-native';
 
 type Props = {
   name: string;
-  image: ImageSourcePropType;
+  photoUrl: string;
+  phone?: string;
   style?: ViewStyle;
+  onPress?: () => void;
 };
 
-export default function TrainerCard({ name, image, style }: Props) {
+export default function TrainerCard({ name, phone, photoUrl, style, onPress }: Props) {
   return (
-  <View style={[styles.card, style]}>
-    <Image source={image} style={styles.image} resizeMode="cover" />
-    <View style={styles.nameBox}>
-      <Text style={styles.name}>{name}</Text>
-    </View>
-  </View>
-);
+    <Pressable onPress={onPress} disabled={!onPress}>
+      <View style={[styles.card, style]}>
+        <Image source={{ uri: photoUrl }} style={styles.image} resizeMode="cover" />
+        <View style={styles.nameBox}>
+          <Text style={styles.name}>{name}</Text>
+          <Text style={styles.phone}>{phone}</Text>
+        </View>
+      </View>
+    </Pressable>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -27,11 +33,11 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.lightGreen,
     borderRadius: SPACING.radius,
     overflow: 'hidden',
-    marginRight: SPACING.md, // 16
+    marginRight: SPACING.md,
   },
   image: {
     width: '100%',
-    height: 120, // верхня частина з фото
+    height: 120,
   },
   nameBox: {
     flex: 1,
@@ -41,6 +47,11 @@ const styles = StyleSheet.create({
   name: {
     ...TYPOGRAPHY.bodyS,
     color: COLORS.neutralDarkDarkest,
+  },
+   phone: {
+    ...TYPOGRAPHY.bodyS,
+    color: COLORS.neutralDarkLight,
+    marginTop: 2,
   },
 });
 

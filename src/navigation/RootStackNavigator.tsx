@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import TabsNavigator from '@/src/navigation/TabsNavigator';
 import YourBookScreen from '@/src/screens/YourBookScreen';
 import { SCREENS } from '@/src/constants/screens';
+import TrainersScreen from '../screens/TrainersScreen';
 
 export type RootStackParamList = {
   [SCREENS.TABS]: undefined;
@@ -12,6 +13,7 @@ export type RootStackParamList = {
     duration: number;
     courtType: 'Indoor' | 'Outdoor';
   };
+  [SCREENS.TRAINERS]: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -21,6 +23,7 @@ export default function RootStackNavigator() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name={SCREENS.TABS} component={TabsNavigator} />
       <Stack.Screen name={SCREENS.YOUR_BOOK} component={YourBookScreen} />
+      <Stack.Screen name={SCREENS.TRAINERS} component={TrainersScreen} />
     </Stack.Navigator>
   );
 }

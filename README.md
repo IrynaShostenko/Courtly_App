@@ -58,3 +58,9 @@ Join our community of developers creating universal apps.
 
 ## Navigation
 ![video](video-navigation.mp4)
+
+## API
+![HOME](cross_assignment_5_HOME.png)
+![PLAY](cross_assignment_5_PLAY.png)
+![PLAY](cross_assignment_5_PLAY_2.png)
+![TRAINERS](cross_assignment_5_Trainers.png)
