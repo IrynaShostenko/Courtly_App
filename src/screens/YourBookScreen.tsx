@@ -1,17 +1,16 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '@/src/navigation/RootStackNavigator';
-import { SCREENS } from '@/src/constants/screens';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/src/store/store';
 import ScreenHeader from '@/src/components/ScreenHeader';
 import { COLORS } from '@/src/constants/colors';
 
-type Props = NativeStackScreenProps<RootStackParamList, typeof SCREENS.YOUR_BOOK>;
+export default function YourBookScreen({ navigation }: any) {
+  const { date, time, duration, courtType } = useSelector(
+    (state: RootState) => state.booking
+  );
 
-export default function YourBookScreen({ navigation, route }: Props) {
-  const params = route.params;
-
-  if (!params?.date || !params?.time) {
+  if (!date || !time) {
     return (
       <View style={{ flex: 1, backgroundColor: COLORS.neutralLightLightest }}>
         <ScreenHeader title="Your Book" leftText="Back" onLeftPress={() => navigation.goBack()} />
@@ -21,8 +20,6 @@ export default function YourBookScreen({ navigation, route }: Props) {
       </View>
     );
   }
-
-  const { date, time, duration, courtType } = params;
 
   return (
     <View style={{ flex: 1, backgroundColor: COLORS.neutralLightLightest }}>

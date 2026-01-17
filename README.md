@@ -64,3 +64,10 @@ Join our community of developers creating universal apps.
 ![PLAY](cross_assignment_5_PLAY.png)
 ![PLAY](cross_assignment_5_PLAY_2.png)
 ![TRAINERS](cross_assignment_5_Trainers.png)
+
+## Context API та Redux
+React Native (Expo) app with global state management.
+Context API: user profile data (name, phone, email) via UserContext
+Redux Toolkit: booking state (court, date, time, duration)
+State is used across multiple screens (Home, Booking, Profile)
+Navigation integrated with Stack and Tabs

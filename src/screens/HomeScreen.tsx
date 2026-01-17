@@ -8,10 +8,18 @@ import HomeTrainersSection from '@/src/components/HomeTrainersSection';
 import { COLORS } from '@/src/constants/colors';
 import { CITIES } from '@/src/constants/cities';
 
+import { useUser } from '@/src/context/UserContext';
+
+
 export default function HomeScreen() {
+
+  const { user } = useUser();
+
   const city = CITIES.ODESA;
-  const name = "Iryna";
+  const name = user.firstName || 'Guest';
   const bannertext = "Play now!";
+
+
 
   return (
     <SafeAreaView style={styles.safe} edges={['top']}>

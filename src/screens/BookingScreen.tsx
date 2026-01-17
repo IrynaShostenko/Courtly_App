@@ -1,48 +1,59 @@
+// import React, { useMemo } from 'react';
+import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+
 import PrimaryButton from '@/src/components/PrimaryButton';
 import ScreenHeader from '@/src/components/ScreenHeader';
-import { COURT_TYPES, CourtType, DATES, DURATIONS, TIMES } from '@/src/constants/bookingOptions';
+
+import {
+  COURT_TYPES,
+  DATES,
+  DURATIONS,
+  TIMES,
+  type CourtType,
+  type DurationMin,
+} from '@/src/constants/bookingOptions';
+
 import { COLORS } from '@/src/constants/colors';
 import { SCREENS } from '@/src/constants/screens';
+import { SPACING } from '@/src/constants/spacing';
 import { TYPOGRAPHY } from '@/src/constants/typography';
-import React, { useMemo, useState } from 'react';
-import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
-import { SPACING } from '../constants/spacing';
 
+import type { RootState } from '@/src/store/store';
+import {
+  clearAll,
+  setCourtType,
+  setDate,
+  setDuration,
+  setTime,
+
+// eslint-disable-next-line import/no-unresolved
+} from '@/src/store/bookingSlice';
 
 export default function BookingScreen({ navigation }: any) {
-  const [courtType, setCourtType] = useState<CourtType | null>(null);
-  const [date, setDate] = useState<string | null>(null);      
-  const [time, setTime] = useState<string | null>(null);     
-  const [duration, setDuration] = useState<number | null>(null); 
+  const dispatch = useDispatch();
 
-  const clearAll = () => {
-    setCourtType(null);
-    setDate(null);
-    setTime(null);
-    setDuration(null);
-  };
+  const { courtType, date, time, duration } = useSelector(
+    (state: RootState) => state.booking
+  );
 
   function toggleValue<T>(prev: T | null, next: T): T | null {
-  return prev === next ? null : next;
-}
+    return prev === next ? null : next; 
+  }
 
-  const timeRange = useMemo(() => {
-    if (!time || !duration) return null;
-    return `${time}–${addMinutes(time, duration)}`; 
-  }, [time, duration]);
+
 
   const onCheckout = () => {
     if (!courtType || !date || !time || !duration) {
-      Alert.alert('Complete booking', 'Please select court type, date, time and duration.');
+      Alert.alert(
+        'Complete booking',
+        'Please select court type, date, time and duration.'
+      );
       return;
     }
 
-    navigation.navigate(SCREENS.YOUR_BOOK, {
-      courtType,
-      date,
-      time: timeRange ?? time,
-      duration,
-    });
+    navigation.navigate(SCREENS.YOUR_BOOK);
+
   };
 
   return (
@@ -52,7 +63,7 @@ export default function BookingScreen({ navigation }: any) {
         leftText="Cancel"
         rightText="Clear All"
         onLeftPress={() => navigation.navigate(SCREENS.HOME)}
-        onRightPress={clearAll}
+        onRightPress={() => dispatch(clearAll())}
       />
 
       <View style={styles.content}>
@@ -63,9 +74,11 @@ export default function BookingScreen({ navigation }: any) {
               key={opt.value}
               text={opt.label}
               selected={courtType === opt.value}
-              onPress={() => setCourtType((prev) => toggleValue(prev, opt.value))}
+              onPress={() =>
+                dispatch(setCourtType(toggleValue<CourtType>(courtType, opt.value)))
+              }
             />
-  ))}
+          ))}
         </View>
 
         <Text style={styles.label}>Date</Text>
@@ -75,9 +88,9 @@ export default function BookingScreen({ navigation }: any) {
               key={opt.value}
               text={opt.label}
               selected={date === opt.value}
-              onPress={() => setDate((prev) => toggleValue(prev, opt.value))}
+              onPress={() => dispatch(setDate(toggleValue(date, opt.value)))}
             />
-  ))}
+          ))}
         </View>
 
         <Text style={styles.label}>Time</Text>
@@ -87,9 +100,9 @@ export default function BookingScreen({ navigation }: any) {
               key={opt.value}
               text={opt.label}
               selected={time === opt.value}
-              onPress={() => setTime((prev) => toggleValue(prev, opt.value))}
+              onPress={() => dispatch(setTime(toggleValue(time, opt.value)))}
             />
-  ))}
+          ))}
         </View>
 
         <Text style={styles.label}>Duration</Text>
@@ -99,9 +112,13 @@ export default function BookingScreen({ navigation }: any) {
               key={opt.value}
               text={opt.label}
               selected={duration === opt.value}
-              onPress={() => setDuration((prev) => toggleValue(prev, opt.value))}
+              onPress={() =>
+                dispatch(
+                  setDuration(toggleValue<DurationMin>(duration, opt.value))
+                )
+              }
             />
-  ))}
+          ))}
         </View>
       </View>
 
@@ -128,13 +145,13 @@ function Chip({
   );
 }
 
-function addMinutes(hhmm: string, minutes: number) {
-  const [h, m] = hhmm.split(':').map(Number);
-  const total = h * 60 + m + minutes;
-  const hh = Math.floor(total / 60) % 24;
-  const mm = total % 60;
-  return `${String(hh).padStart(2, '0')}:${String(mm).padStart(2, '0')}`;
-}
+// function addMinutes(hhmm: string, minutes: number) {
+//   const [h, m] = hhmm.split(':').map(Number);
+//   const total = h * 60 + m + minutes;
+//   const hh = Math.floor(total / 60) % 24;
+//   const mm = total % 60;
+//   return `${String(hh).padStart(2, '0')}:${String(mm).padStart(2, '0')}`;
+// }
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: COLORS.neutralLightLightest },
