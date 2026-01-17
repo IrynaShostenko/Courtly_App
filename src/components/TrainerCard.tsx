@@ -1,7 +1,7 @@
 import { COLORS } from '@/src/constants/colors';
 import { SPACING } from '@/src/constants/spacing';
 import { TYPOGRAPHY } from '@/src/constants/typography';
-import React from 'react';
+import React, { memo } from 'react';
 import { Image, Pressable, StyleSheet, Text, View, ViewStyle } from 'react-native';
 
 type Props = {
@@ -12,7 +12,7 @@ type Props = {
   onPress?: () => void;
 };
 
-export default function TrainerCard({ name, phone, photoUrl, style, onPress }: Props) {
+function TrainerCard({ name, phone, photoUrl, style, onPress }: Props) {
   return (
     <Pressable onPress={onPress} disabled={!onPress}>
       <View style={[styles.card, style]}>
@@ -25,6 +25,8 @@ export default function TrainerCard({ name, phone, photoUrl, style, onPress }: P
     </Pressable>
   );
 }
+
+export default memo(TrainerCard);
 
 const styles = StyleSheet.create({
   card: {

@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, Pressable, Text, View } from 'react-native';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { ActivityIndicator, FlatList, Pressable, Text, View, LayoutAnimation, Platform, UIManager } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-
 import { fetchTrainers } from '@/src/api/trainers';
 import type { Trainer } from '@/src/types/trainer';
-
 import TrainerCard from '@/src/components/TrainerCard';
 import { SPACING } from '@/src/constants/spacing';
 import { COLORS } from '@/src/constants/colors';
 import { TYPOGRAPHY } from '@/src/constants/typography';
 import { SCREENS } from '@/src/constants/screens';
 import type { RootStackParamList } from '@/src/navigation/RootStackNavigator';
+
+if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
 
 export default function HomeTrainersSection() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
@@ -20,21 +22,31 @@ export default function HomeTrainersSection() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetchTrainers()
-      .then(setTrainers)
-      .catch((e) => setError(e instanceof Error ? e.message : 'Unknown error'))
-      .finally(() => setLoading(false));
-  }, []);
+  const onSeeMore = useCallback(() => {
+  navigation.navigate(SCREENS.TRAINERS);
+}, [navigation]);
 
-  const preview = trainers.slice(0, 5);
+
+useEffect(() => {
+  fetchTrainers()
+    .then((data) => {
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+      setTrainers(data);
+    })
+    .catch((e) => setError(e instanceof Error ? e.message : 'Unknown error'))
+    .finally(() => setLoading(false));
+}, []);
+
+
+  const preview = useMemo(() => trainers.slice(0, 5), [trainers]);
+
 
   return (
     <View style={{ paddingHorizontal: SPACING.lg, marginTop: SPACING.lg }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
         <Text style={{ ...TYPOGRAPHY.h4, color: COLORS.neutralDarkDarkest }}>Our Trainers</Text>
 
-        <Pressable onPress={() => navigation.navigate(SCREENS.TRAINERS)} hitSlop={10}>
+        <Pressable onPress={onSeeMore} hitSlop={10}>
           <Text style={{ ...TYPOGRAPHY.bodyM, color: COLORS.primaryGreen }}>See more</Text>
         </Pressable>
       </View>

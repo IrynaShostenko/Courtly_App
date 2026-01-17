@@ -1,6 +1,10 @@
-import { Image,  ImageSourcePropType, StyleSheet, Text, View } from 'react-native';
+import { Animated, ImageSourcePropType, StyleSheet, Text, View, Platform } from 'react-native';
+import React, { useRef } from 'react';
 import { COLORS } from '@/src/constants/colors';
 import { TYPOGRAPHY } from '@/src/constants/typography';
+import { useFocusEffect } from '@react-navigation/native';
+
+
 
 type Props = {
   text?: string;
@@ -8,9 +12,34 @@ type Props = {
 };
 
 export default function HomeBanner({ text, source }: Props) {
-  return (
+    const anim = useRef(new Animated.Value(0)).current;
+
+  useFocusEffect(
+  React.useCallback(() => {
+    anim.setValue(0);
+
+    Animated.timing(anim, {
+      toValue: 1,
+      duration: 650,
+      useNativeDriver: Platform.OS !== 'web',
+    }).start();
+
+    return () => {};
+  }, [anim])
+);
+
+  const opacity = anim;
+  const scale = anim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [1.07, 1], 
+  });
+ return (
     <View style={styles.banner}>
-      <Image source={source} style={styles.bannerImage} resizeMode="cover" />
+      <Animated.Image
+        source={source}
+        style={[styles.bannerImage, { opacity, transform: [{ scale }] }]}
+        resizeMode="cover"
+      />
       <View style={styles.overlay} />
       <Text style={styles.bannerText}>{text}</Text>
     </View>
@@ -41,3 +70,8 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
   },
 });
+
+
+
+
+  

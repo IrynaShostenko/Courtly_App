@@ -71,3 +71,11 @@ Context API: user profile data (name, phone, email) via UserContext
 Redux Toolkit: booking state (court, date, time, duration)
 State is used across multiple screens (Home, Booking, Profile)
 Navigation integrated with Stack and Tabs
+
+
+## Animation та Optimisation
+Performance optimization applied:
+- LayoutAnimation for trainers list appearance
+- React.memo for TrainerCard to reduce re-renders
+- useMemo and useCallback for stable props
+- axios removed, native fetch used instead
