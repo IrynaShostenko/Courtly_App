@@ -78,3 +78,75 @@ Performance optimization applied:
 - React.memo for TrainerCard to reduce re-renders
 - useMemo and useCallback for stable props
 - axios removed, native fetch used instead
+
+## Cross Final Project
+
+![1](cross_final_project_1.png)
+![2](cross_final_project_2.png)
+![3](cross_final_project_3.png)
+![4](cross_final_project_4.png)
+
+
+✅ Improvements in This Version
+
+This project is an improved version of the initial court booking mobile application.
+The goal was to enhance usability, extend functionality, and improve state management and UX.
+🔹 New & Improved Features
+- Extended booking flow: users can select court type, date (via calendar), time, and duration.
+- Booking confirmation screen with final booking details.
+- Booking History section in Profile showing all past and upcoming bookings.
+- Cancel booking option for future bookings only (past bookings cannot be canceled).
+- Dynamic Home banner that shows the next upcoming booking (e.g. “Your next play: 25 Jan, 15:00”). If no booking exists, default text “Play now!” is shown.
+- External API integration (RandomUser.me) to display trainers as an additional service.
+- Persistent user profile using AsyncStorage.
+
+State Management Decisions
+
+Two global state management approaches are used intentionally:
+
+🔸 Context API — User Profile
+Context API is used to store and manage user profile data:
+- first name
+- last name
+- phone
+- email
+
+Reasoning:
+User data is simple, global, and required in multiple screens (Home, Profile, Booking confirmation).
+Context provides a lightweight and simple solution without unnecessary Redux complexity.
+AsyncStorage is used to persist user data between app restarts.
+
+🔸 Redux Toolkit — Booking & History
+Redux is used to manage:
+- current booking selections
+- confirmed bookings
+- booking history
+- cancel actions
+
+Reasoning:
+Booking logic includes multiple actions (select, confirm, cancel, clear) and is shared across several screens
+(Booking, Confirmation, Home banner, Profile history).
+Redux provides predictable state transitions and centralized business logic.
+
+🎨 UX / UI Improvements
+Booking calendar prevents selecting past dates.
+Confirmation flow gives clear feedback after booking.
+Home screen banner reflects real user activity (next booking).
+Navigation flow is optimized for main user scenario:
+Home → Booking → Confirmation → Home → Profile History.
+
+🧩 Component-Based Architecture
+All major UI parts are separated into reusable components:
+HomeHeader
+HomeBanner
+BookingCalendar
+TrainerCard
+ScreenHeader
+PrimaryButton
+
+This improves readability, maintainability, and scalability of the project.
+📌 Next Possible Improvements
+User authentication (registration & login flow).
+Rescheduling existing bookings.
+Push notifications before upcoming booking.
+Real backend integration instead of mock APIs.
