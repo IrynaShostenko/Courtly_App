@@ -1,13 +1,13 @@
-// import React, { useMemo } from 'react';
+import React from 'react';
 import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import PrimaryButton from '@/src/components/PrimaryButton';
 import ScreenHeader from '@/src/components/ScreenHeader';
+import BookingCalendar from '@/src/components/BookingCalendar';
 
 import {
   COURT_TYPES,
-  DATES,
   DURATIONS,
   TIMES,
   type CourtType,
@@ -20,40 +20,23 @@ import { SPACING } from '@/src/constants/spacing';
 import { TYPOGRAPHY } from '@/src/constants/typography';
 
 import type { RootState } from '@/src/store/store';
-import {
-  clearAll,
-  setCourtType,
-  setDate,
-  setDuration,
-  setTime,
-
-// eslint-disable-next-line import/no-unresolved
-} from '@/src/store/bookingSlice';
+import { clearAll, setCourtType, setDate, setDuration, setTime } from '@/src/store/bookingSlice';
 
 export default function BookingScreen({ navigation }: any) {
   const dispatch = useDispatch();
 
-  const { courtType, date, time, duration } = useSelector(
-    (state: RootState) => state.booking
-  );
+  const { courtType, date, time, duration } = useSelector((state: RootState) => state.booking);
 
   function toggleValue<T>(prev: T | null, next: T): T | null {
-    return prev === next ? null : next; 
+    return prev === next ? null : next;
   }
-
-
 
   const onCheckout = () => {
     if (!courtType || !date || !time || !duration) {
-      Alert.alert(
-        'Complete booking',
-        'Please select court type, date, time and duration.'
-      );
+      Alert.alert('Complete booking', 'Please select court type, date, time and duration.');
       return;
     }
-
     navigation.navigate(SCREENS.YOUR_BOOK);
-
   };
 
   return (
@@ -62,7 +45,7 @@ export default function BookingScreen({ navigation }: any) {
         title="Booking"
         leftText="Cancel"
         rightText="Clear All"
-        onLeftPress={() => navigation.navigate(SCREENS.HOME)}
+        onLeftPress={() => navigation.goBack()}
         onRightPress={() => dispatch(clearAll())}
       />
 
@@ -74,24 +57,13 @@ export default function BookingScreen({ navigation }: any) {
               key={opt.value}
               text={opt.label}
               selected={courtType === opt.value}
-              onPress={() =>
-                dispatch(setCourtType(toggleValue<CourtType>(courtType, opt.value)))
-              }
+              onPress={() => dispatch(setCourtType(toggleValue<CourtType>(courtType, opt.value)))}
             />
           ))}
         </View>
 
         <Text style={styles.label}>Date</Text>
-        <View style={styles.row}>
-          {DATES.map((opt) => (
-            <Chip
-              key={opt.value}
-              text={opt.label}
-              selected={date === opt.value}
-              onPress={() => dispatch(setDate(toggleValue(date, opt.value)))}
-            />
-          ))}
-        </View>
+        <BookingCalendar value={date} onChange={(next) => dispatch(setDate(next))} />
 
         <Text style={styles.label}>Time</Text>
         <View style={styles.row}>
@@ -109,13 +81,11 @@ export default function BookingScreen({ navigation }: any) {
         <View style={styles.row}>
           {DURATIONS.map((opt) => (
             <Chip
-              key={opt.value}
+              key={String(opt.value)}
               text={opt.label}
               selected={duration === opt.value}
               onPress={() =>
-                dispatch(
-                  setDuration(toggleValue<DurationMin>(duration, opt.value))
-                )
+                dispatch(setDuration(toggleValue<DurationMin>(duration, opt.value as DurationMin)))
               }
             />
           ))}
@@ -129,15 +99,7 @@ export default function BookingScreen({ navigation }: any) {
   );
 }
 
-function Chip({
-  text,
-  selected,
-  onPress,
-}: {
-  text: string;
-  selected: boolean;
-  onPress: () => void;
-}) {
+function Chip({ text, selected, onPress }: { text: string; selected: boolean; onPress: () => void }) {
   return (
     <Pressable onPress={onPress} style={[styles.chip, selected && styles.chipSelected]}>
       <Text style={[styles.chipText, selected && styles.chipTextSelected]}>{text}</Text>
@@ -145,17 +107,9 @@ function Chip({
   );
 }
 
-// function addMinutes(hhmm: string, minutes: number) {
-//   const [h, m] = hhmm.split(':').map(Number);
-//   const total = h * 60 + m + minutes;
-//   const hh = Math.floor(total / 60) % 24;
-//   const mm = total % 60;
-//   return `${String(hh).padStart(2, '0')}:${String(mm).padStart(2, '0')}`;
-// }
-
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: COLORS.neutralLightLightest },
-  content: { padding: 16, gap: 12 },
+  content: { padding: 24, gap: 12 },
   footer: { marginTop: 'auto', padding: 16 },
 
   label: { ...TYPOGRAPHY.bodyM, color: COLORS.neutralDarkDarkest },
@@ -169,10 +123,7 @@ const styles = StyleSheet.create({
     borderColor: COLORS.primaryGreen,
     backgroundColor: COLORS.lightestGreen,
   },
-  chipSelected: {
-    borderColor: COLORS.primaryGreen,
-    backgroundColor: COLORS.primaryGreen,
-  },
+  chipSelected: { borderColor: COLORS.primaryGreen, backgroundColor: COLORS.primaryGreen },
   chipText: { ...TYPOGRAPHY.captionM, color: COLORS.primaryGreen },
-  chipTextSelected: { color: COLORS.neutralLightLightest},
+  chipTextSelected: { color: COLORS.neutralLightLightest },
 });

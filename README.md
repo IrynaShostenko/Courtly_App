@@ -72,7 +72,6 @@ Redux Toolkit: booking state (court, date, time, duration)
 State is used across multiple screens (Home, Booking, Profile)
 Navigation integrated with Stack and Tabs
 
-
 ## Animation та Optimisation
 Performance optimization applied:
 - LayoutAnimation for trainers list appearance

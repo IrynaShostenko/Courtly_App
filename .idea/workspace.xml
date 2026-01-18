@@ -6,9 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="4de0cdf5-0901-48f9-82ca-577f2c0f4568" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/HomeTrainersSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomeTrainersSection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/bookingOptions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/bookingOptions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigation/RootStackNavigator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/RootStackNavigator.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/BookingScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/BookingScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/HomeScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/HomeScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/YourBookScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/YourBookScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/bookingSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/bookingSlice.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

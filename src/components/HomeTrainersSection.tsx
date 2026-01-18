@@ -60,7 +60,7 @@ useEffect(() => {
           data={preview}
           horizontal
           showsHorizontalScrollIndicator={false}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.id || item.phone || item.photoUrl}
           contentContainerStyle={{ paddingTop: SPACING.md, paddingBottom: SPACING.md }}
           renderItem={({ item }) => (
             <TrainerCard

@@ -1,5 +1,5 @@
 export type CourtType = 'Indoor' | 'Outdoor';
-export type DurationMin = 30 | 60 | 90 | 120;
+export type DurationMin = (typeof DURATIONS)[number]['value'];
 
 type Option<T> = {
   label: string;
@@ -11,14 +11,6 @@ export const COURT_TYPES: readonly Option<CourtType>[] = [
   { label: 'OUTDOOR', value: 'Outdoor' },
 ] as const;
 
-
-export const DATES: readonly Option<string>[] = [
-  { label: '2025-11-19', value: '2025-11-19' },
-  { label: '2025-11-20', value: '2025-11-20' },
-  { label: '2025-11-21', value: '2025-11-21' },
-  { label: '2025-11-22', value: '2025-11-22' },
-  { label: '2025-11-25', value: '2025-11-25' },
-] as const;
 
 export const TIMES: readonly Option<string>[] = [
   { label: '09:00', value: '09:00' },
@@ -33,7 +25,7 @@ export const TIMES: readonly Option<string>[] = [
   { label: '19:00', value: '19:00' },
 ] as const;
 
-export const DURATIONS: readonly Option<DurationMin>[] = [
+export const DURATIONS = [
   { label: '30', value: 30 },
   { label: '60', value: 60 },
   { label: '90', value: 90 },

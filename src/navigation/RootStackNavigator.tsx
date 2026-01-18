@@ -2,17 +2,12 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import TabsNavigator from '@/src/navigation/TabsNavigator';
 import YourBookScreen from '@/src/screens/YourBookScreen';
+import TrainersScreen from '@/src/screens/TrainersScreen';
 import { SCREENS } from '@/src/constants/screens';
-import TrainersScreen from '../screens/TrainersScreen';
 
 export type RootStackParamList = {
   [SCREENS.TABS]: undefined;
-  [SCREENS.YOUR_BOOK]: {
-    date: string;
-    time: string;
-    duration: number;
-    courtType: 'Indoor' | 'Outdoor';
-  };
+  [SCREENS.YOUR_BOOK]: undefined;     // ✅ без params
   [SCREENS.TRAINERS]: undefined;
 };
 

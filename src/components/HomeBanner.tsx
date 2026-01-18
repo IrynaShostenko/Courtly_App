@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: COLORS.neutralLightLightest,
     fontStyle: 'italic',
+    width: '80%',
   },
 });
 
