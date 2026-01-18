@@ -57,7 +57,7 @@ export default function YourBookScreen({ navigation }: any) {
         <Text>Court Type: {prettyCourt}</Text>
       </View>
 
-      <View style={{ marginTop: 'auto', padding: 16 }}>
+      <View style={{ marginTop: 'auto', paddingHorizontal: 16, paddingBottom: 48 }}>
         <PrimaryButton title="Book Now" onPress={onBookNow} />
       </View>
 

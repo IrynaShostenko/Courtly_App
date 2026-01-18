@@ -109,7 +109,7 @@ function Chip({ text, selected, onPress }: { text: string; selected: boolean; on
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: COLORS.neutralLightLightest },
-  content: { padding: 24, gap: 12 },
+  content: { paddingHorizontal: 24, gap: 12 },
   footer: { marginTop: 'auto', padding: 16 },
 
   label: { ...TYPOGRAPHY.bodyM, color: COLORS.neutralDarkDarkest },

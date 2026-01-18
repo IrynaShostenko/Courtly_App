@@ -5,4 +5,5 @@ export const SCREENS = {
   PROFILE: 'Profile',
   YOUR_BOOK: 'YourBook',
   TRAINERS: 'Trainers',
+  BOOKING_HISTORY: 'BookingHistory',
 } as const;

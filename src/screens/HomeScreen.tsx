@@ -12,6 +12,10 @@ import { CITIES } from '@/src/constants/cities';
 import { useUser } from '@/src/context/UserContext';
 import type { RootState } from '@/src/store/store';
 
+function toStartMs(date: string, time: string) {
+  return new Date(`${date}T${time}:00`).getTime();
+}
+
 function formatPrettyDate(iso: string) {
   const [y, m, d] = iso.split('-').map(Number);
   const date = new Date(y, m - 1, d);
@@ -24,9 +28,19 @@ export default function HomeScreen() {
   const city = CITIES.ODESA;
   const name = user.firstName || 'Guest';
 
-  const confirmed = useSelector((state: RootState) => state.booking.confirmedBooking);
+  const history = useSelector((state: RootState) => state.booking.history);
 
-  const bannerText = confirmed?.date ? 'next Play ' + formatPrettyDate(confirmed.date) + ' ' + confirmed.time : 'Play now!';
+  const next = (() => {
+    const now = Date.now();
+    const upcoming = history
+      .filter((b) => !b.canceledAt && toStartMs(b.date, b.time) > now)
+      .sort((a, c) => toStartMs(a.date, a.time) - toStartMs(c.date, c.time));
+    return upcoming[0] ?? null;
+  })();
+
+  const bannerText = next
+    ? `Your next play: ${formatPrettyDate(next.date)}, ${next.time}`
+    : 'Play now!';
 
   return (
     <SafeAreaView style={styles.safe} edges={['top']}>

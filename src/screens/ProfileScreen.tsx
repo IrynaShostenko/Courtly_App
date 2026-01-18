@@ -1,11 +1,15 @@
 import React from 'react';
 import { View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
 import ScreenHeader from '@/src/components/ScreenHeader';
 import { useUser } from '@/src/context/UserContext';
 import FormInput from '@/src/components/FormInput';
 import PrimaryButton from '@/src/components/PrimaryButton';
+import { SCREENS } from '@/src/constants/screens';
 
 export default function ProfileScreen() {
+  const navigation = useNavigation<any>();
   const { user, updateUser, resetUser } = useUser();
 
   return (
@@ -43,6 +47,12 @@ export default function ProfileScreen() {
         />
 
         <PrimaryButton title="Clear profile" onPress={() => void resetUser()} />
+        <View style={{ height: 16 }} />
+        <PrimaryButton
+          title="Booking history"
+          onPress={() => navigation.navigate(SCREENS.BOOKING_HISTORY)}
+        />
+
       </View>
     </View>
   );
